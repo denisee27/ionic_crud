@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Create Company
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,6 +12,15 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <form class="p-3 col-12 ion-margin-horizontal" [formGroup]="formGroup" #thisForm="ngForm"(ngSubmit)="submitForm(formGroup)" novalidate>
+    <div>&nbsp;</div>
+    <ion-input formControlName="code" label="Code" label-placement="floating" fill="outline" required placeholder="Enter text"></ion-input>
+    <div>&nbsp;</div>
+    <ion-input formControlName="name" label="Name" label-placement="floating" fill="outline" required placeholder="Enter text"></ion-input>
+    <div>&nbsp;</div>
+    <ion-input formControlName="description" label="Description" label-placement="floating" fill="outline" required placeholder="Enter text"></ion-input>
+    <div>&nbsp;</div>
+    <ion-toggle formControlName="status">Status</ion-toggle><br /><br />
+    <ion-button type="submit" expand="block">Submit</ion-button>
+  </form>
 </ion-content>

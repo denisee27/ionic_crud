@@ -15,11 +15,18 @@
   <div class="ion-text-center">
     <img src="/assets/somethinc.png">
   </div>
-  <form class="p-3 col-12" [formGroup]="loginForm" #thisForm="ngForm" (ngSubmit)="submitForm(loginForm)" novalidate>
-    <ion-input formControlName="email" label="Email" label-placement="floating" fill="outline"
+  <form class="p-3 col-12 ion-margin-horizontal" [formGroup]="loginForm" #thisForm="ngForm"
+    (ngSubmit)="submitForm(loginForm)" novalidate>
+    <ion-input formControlName="email" label="Email" label-placement="floating" fill="outline" required
       placeholder="Enter text"></ion-input>
-    <ion-input formControlName="password" label="Password" label-placement="floating" fill="outline"
-      placeholder="Enter text"></ion-input>
-    <ion-button expand="full">Submit</ion-button>
+    <div style=" display: flex; align-items: center;">
+      <ion-input type="{{isShowPassword?'text':'password'}}" style="flex: 1" formControlName="password" label="Password"
+        label-placement="floating" fill="outline" required placeholder="Enter text"></ion-input>
+      <span (click)="isShowPassword=!isShowPassword" style="cursor: pointer;">
+        <ion-icon [name]="isShowPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+      </span>
+    </div>
+
+    <ion-button type="submit" expand="block">Submit</ion-button>
   </form>
 </ion-content>

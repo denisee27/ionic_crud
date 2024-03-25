@@ -32,7 +32,7 @@ export class BeforeLoginGuard implements CanActivate {
 
     canActivate(): boolean {
         if (this.auth.isLoggedIn()) {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['home']);
         }
         return !this.auth.isLoggedIn();
     }

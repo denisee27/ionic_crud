@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost/ams',
-  assetUrl: 'http://localhost/ams/uploads/', //Always add slash at end of the line
+  apiUrl: 'https://ams.karyaoptima.com/api',
+  assetUrl: 'https://ams.karyaoptima.com/api/uploads/', //Always add slash at end of the line
   appName: 'ams_app',
   appKey: '5oOfskbgKrGl4xZp5UKd40fgezO7NnwE'
 };
-
+// https://ams.karyaoptima.com/api/companies?for
 /*
 * For easier debugging in development mode, you can import the following file
 * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

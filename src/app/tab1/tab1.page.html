@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Company List
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,5 +13,56 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 pages"></app-explore-container>
+  <ion-card *ngFor="let item of data?.data; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{ item?.name }}</ion-card-title>
+      <ion-row class="ion-justify-content-between">
+        <ion-card-subtitle>Company Code : {{ item?.code }}</ion-card-subtitle>
+        <ion-button fill="clear" [id]="i">
+          <ion-icon style="color: white;" name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+        <ion-popover [trigger]="i" trigger="popover-button" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-content>
+              <ion-list>
+                <ion-item [button]="true" [detail]="false">
+                  <ion-icon name="pencil-outline" size="auto"></ion-icon>                
+                  <div>&nbsp;</div>
+                  Edit
+                </ion-item>
+                <ion-item style="color: red;" [button]="true" [detail]="false" (click)="this.deleteDialog.show(item.id)">
+                  <ion-icon style="color: red;" name="trash-outline"></ion-icon>                  
+                  <div>&nbsp;</div>
+                  <b>Delete</b>
+                </ion-item>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      Created On {{item.created_at}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-modal [backdropDismiss]="false"  #modal [isOpen]="deleteModal" [initialBreakpoint]="0.20" [handle]="false">
+    <ng-template>
+      <div class="block">
+        <h3 class="ion-text-center">Are you sure want to delete this data?</h3>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="3">
+            <ion-button (click)="this.deleteDialog.close()" color="danger" expand="block">Cancel</ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="this.deleteDialog.submit()" expand="block">Delete</ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+      </ng-template>
+  </ion-modal>
+
+  
+
+  
 </ion-content>

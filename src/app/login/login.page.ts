@@ -16,6 +16,7 @@ export class LoginPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) { }
+  isShowPassword = false;
   loginForm = new FormGroup({
     email: new FormControl(null),
     password: new FormControl(null)
@@ -23,11 +24,12 @@ export class LoginPage implements OnInit {
 
   submitForm(loginForm: any): void {
     if (!loginForm.valid) {
-      this.el.nativeElement.querySelectorAll('[formcontrolname].ng-invalid')?.[0].focus();
+      // this.el.nativeElement.querySelectorAll('[formcontrolname].ng-invalid')?.[0].focus();
       return;
     }
     loginForm.disable();
     this.auth.login(loginForm.value.email, loginForm.value.password).then((res: any) => {
+      console.log(res)
       if (res.success) {
         const returnUrl = this.route.snapshot.queryParams['return'] || '/';
         this.router.navigateByUrl(returnUrl);
@@ -45,6 +47,10 @@ export class LoginPage implements OnInit {
         // this.toastr.error(desc, title);
       }
     });
+  }
+  toggleShow() {
+    this.isShowPassword = !this.isShowPassword;
+    // this.form.type = this.isShowPassword ? 'text' : 'password';
   }
 
   ngOnInit() {
