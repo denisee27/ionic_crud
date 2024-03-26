@@ -34,9 +34,9 @@ export class HTTPInterceptorService implements HttpInterceptor {
             this.checkTimeout = false;
         }
 
-        if (this.checkTimeout && this.auth.checkTimeout()) {
-            return EMPTY;
-        }
+        // if (this.checkTimeout && this.auth.checkTimeout()) {
+        //     return EMPTY;
+        // }
 
         return next.handle(_req).pipe(
             timeout(30000),
@@ -57,7 +57,7 @@ export class HTTPInterceptorService implements HttpInterceptor {
                     delay(100),
                 );
             }),
-            finalize(() => this.checkTimeout && this.auth.refreshTimeout())
+            // finalize(() => this.checkTimeout && this.auth.refreshTimeout())
         )
     }
 

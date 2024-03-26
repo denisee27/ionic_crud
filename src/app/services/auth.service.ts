@@ -173,37 +173,37 @@ export class AuthService {
         const encAuth = EncryptService.encrypt(JSON.stringify(authData));
         localStorage.setItem('_' + environment.appName + '.globals', encAuth);
         delete authData.user;
-        this.refreshTimeout(authData);
+        // this.refreshTimeout(authData);
     }
 
-    checkTimeout(): boolean {
-        const authData = this.tokenData;
-        if (!authData) {
-            this.isTimeOut.next(true);
-            return true;
-        }
-        const current_time = (new Date()).getTime();
-        const auth_expires = authData.expires;
-        const isTimeOut = current_time > auth_expires;
-        if (isTimeOut) {
-            this.isTimeOut.next(true);
-        }
-        return isTimeOut;
-    }
+    // checkTimeout(): boolean {
+    //     const authData = this.tokenData;
+    //     if (!authData) {
+    //         this.isTimeOut.next(true);
+    //         return true;
+    //     }
+    //     const current_time = (new Date()).getTime();
+    //     const auth_expires = authData.expires;
+    //     const isTimeOut = current_time > auth_expires;
+    //     if (isTimeOut) {
+    //         this.isTimeOut.next(true);
+    //     }
+    //     return isTimeOut;
+    // }
 
-    refreshTimeout(tokenData?: any): void {
-        const authData = tokenData ? tokenData : this.tokenData;
-        clearTimeout(this.timeout);
-        if (!authData) {
-            return;
-        }
-        const date = new Date();
-        date.setSeconds(date.getSeconds() + authData.timeout);
-        authData.expires = date.getTime();
-        this.tokenData = authData;
-        this.isTimeOut.next(false);
-        this.timeout = setTimeout(() => {
-            this.isTimeOut.next(true);
-        }, authData.timeout * 1000);
-    }
+    // refreshTimeout(tokenData?: any): void {
+    //     const authData = tokenData ? tokenData : this.tokenData;
+    //     clearTimeout(this.timeout);
+    //     if (!authData) {
+    //         return;
+    //     }
+    //     const date = new Date();
+    //     date.setSeconds(date.getSeconds() + authData.timeout);
+    //     authData.expires = date.getTime();
+    //     this.tokenData = authData;
+    //     this.isTimeOut.next(false);
+    //     this.timeout = setTimeout(() => {
+    //         this.isTimeOut.next(true);
+    //     }, authData.timeout * 1000);
+    // }
 }

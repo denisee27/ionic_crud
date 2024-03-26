@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LoadingService } from '../services/loading.service';
 import { HttpService } from '../services/http.service';
-import { ToastrService } from 'ngx-toastr';
 import { PageQueryService } from '../services/page-query.service';
 import { ModalController } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
 import { IonModal } from '@ionic/angular/common';
 import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 
@@ -108,7 +106,6 @@ confirm() {
         this.el.nativeElement.querySelectorAll('[formcontrolname].ng-invalid')?.[0]?.focus();
         return;
     }
-
     let fdata = new FormData();
     form.value.status = Number(form.value.status);
     fdata.append('data', JSON.stringify(form.value));
